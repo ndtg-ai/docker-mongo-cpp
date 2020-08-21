@@ -24,4 +24,5 @@ RUN cd mongo-cxx-driver/build \
        -DCMAKE_CXX_FLAGS=-DMONGOC_HAVE_SSL=1 .. \
     && make EP_mnmlstc_core && make && make install
 
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN rm -rf mongo-c-driver mongo-cxx-driver
