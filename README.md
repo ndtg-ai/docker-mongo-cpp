@@ -1,6 +1,6 @@
-![Docker Stars](https://img.shields.io/docker/stars/ntuangiang/cpp.svg)
-![Docker Pulls](https://img.shields.io/docker/pulls/ntuangiang/cpp.svg)
-![Docker Automated build](https://img.shields.io/docker/automated/ntuangiang/cpp.svg)
+![Docker Stars](https://img.shields.io/docker/stars/ntuangiang/mongo-cpp.svg)
+![Docker Pulls](https://img.shields.io/docker/pulls/ntuangiang/mongo-cpp.svg)
+![Docker Automated build](https://img.shields.io/docker/automated/ntuangiang/mongo-cpp.svg)
 
 # Cpp
 
@@ -13,11 +13,36 @@ Welcome to the [MongoDB C++](http://mongocxx.org) driver. On this site, you’ll
 ## Docker Repository
 [ntuangiang/cpp](https://hub.docker.com/r/ntuangiang/cpp) 
 ## Usage
-- Start Services
+- Start services
 
-```yml
+```shell script
 docker run -d -p 2202:22 -p 7777:7777 ntuangiang/mongo-cpp
 ```
+
+- Docker compose
+
+```yaml
+version: "3.8"
+
+services:
+  cpp:
+    image: ntuangiang/mongo-cpp # Image latest
+    ports:
+      - 2202:22 # Remote
+      - 7777:7777 # Debug
+    restart: always
+
+  db:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - 27017:27017
+      - 8081:8081
+    restart: always
+```
+
 ## LICENSE
 
 MIT License
