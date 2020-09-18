@@ -12,11 +12,12 @@ Welcome to the [MongoDB C++](http://mongocxx.org) driver. On this site, you’ll
 
 ## Docker Repository
 [ntuangiang/mongo-cpp](https://hub.docker.com/r/ntuangiang/mongo-cpp) 
+
 ## Usage
 - Start services
 
 ```shell script
-docker run -d -p 2202:22 -p 7777:7777 ntuangiang/mongo-cpp
+docker run -d -p 2202:22 -p 7778:7777 ntuangiang/mongo-cpp
 ```
 
 - Docker compose
@@ -28,8 +29,8 @@ services:
   cpp:
     image: ntuangiang/mongo-cpp # Image latest
     ports:
-      - 2202:22 # Remote
-      - 7777:7777 # Debug
+      - "2202:22" # Remote
+      - "7778:7777" # Debug
     restart: always
 
   db:
@@ -37,9 +38,11 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - ./data:/data/db
     ports:
-      - 27017:27017
-      - 8081:8081
+      - "27018:27017"
+      - "8082:8081"
     restart: always
 ```
 
